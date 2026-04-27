@@ -42,11 +42,14 @@ public class StudentService {
 
     public String joinStudentNames() {
         List<Student> students = studentRepository.findAll();
-        String result = "";
+        StringBuilder sb = new StringBuilder();
         for (Student student : students) {
-            result += student.getName() + ", ";
+            sb.append(student.getName()).append(", ");
         }
-        return result.substring(0, result.length() - 2);
+        if (sb.length() > 0) {
+            sb.setLength(sb.length() - 2);
+        }
+        return sb.toString();
     }
 }
 
